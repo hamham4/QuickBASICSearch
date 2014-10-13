@@ -61,6 +61,9 @@ public class OrgTest {
 		testOrg = new Org("5:15");	
 	}
 	
-	
+	@Test (expected = IllegalArgumentException.class)
+	public void testNullName() {
+		testOrg = new Org(null);	
+	}
 
 }
