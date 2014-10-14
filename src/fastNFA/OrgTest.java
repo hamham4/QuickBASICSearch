@@ -12,14 +12,14 @@ public class OrgTest {
 	public void testFirstPartOneName() {
 		testOrg = new Org("BlackRock");
 		String firstPart = testOrg.getFirstNamePart();
-		assertEquals("first part", firstPart, "BlackRock");;	
+		assertEquals("first part", "BlackRock", firstPart);
 	}
 	
 	@Test
 	public void testSecondPartOneName() {
 		testOrg = new Org("BlackRock");
 		String secondPart = testOrg.getSecondNamePart();
-		assertEquals("second part", secondPart, null);
+		assertEquals("second part", null, secondPart);
 	}
 	
 	
@@ -27,28 +27,28 @@ public class OrgTest {
 	public void testFirstPartTwoNames() {
 		testOrg = new Org("BlackRock Advisors");
 		String firstPart = testOrg.getFirstNamePart();
-		assertEquals("first part", firstPart, "BlackRock");
+		assertEquals("first part", "BlackRock",  firstPart);
 	}
 	
 	@Test
 	public void testSecondPartTwoNames() {
 		testOrg = new Org("BlackRock Advisors");
 		String secondPart = testOrg.getSecondNamePart();
-		assertEquals("second part", secondPart, "Advisors");
+		assertEquals("second part",  "Advisors", secondPart);
 	}
 	
 	@Test
 	public void testFirstPartThreeNames() {
 		testOrg = new Org("BlackRock  Advisors Management");
 		String firstPart = testOrg.getFirstNamePart();
-		assertEquals("first part", firstPart, "BlackRock");
+		assertEquals("first part",  "BlackRock", firstPart );
 	}
 	
 	@Test
 	public void testSecondPartThreeNames() {
 		testOrg = new Org("BlackRock  Advisors Management");
 		String secondPart = testOrg.getSecondNamePart();
-		assertEquals("second part", secondPart, "Advisors");
+		assertEquals("second part", "Advisors", secondPart);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -66,4 +66,5 @@ public class OrgTest {
 		testOrg = new Org(null);	
 	}
 
+	
 }
