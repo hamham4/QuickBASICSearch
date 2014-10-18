@@ -17,10 +17,10 @@ public class Person {
 		} else if (Utility.isAlpha(fname) == false) {
 			throw new IllegalArgumentException("Invalid first name");
 		} else {
-			this.fname = fname;
+			this.fname = Utility.removePeriods(fname);
 		}
 		
-		this.lname = lname;
+		this.lname = Utility.removePeriods(lname);
 		
 		
 		setFirstNameInitial(this.fname);
@@ -58,7 +58,7 @@ public class Person {
 	public void setNickName(String nickName) {
 		
 		if(Utility.isAlpha(nickName) == true) {
-			this.nickName = nickName;
+			this.nickName = Utility.removePeriods(nickName);
 		}
 	}
 	
