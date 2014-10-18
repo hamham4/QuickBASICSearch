@@ -1,10 +1,10 @@
 package fastNFA;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 import au.com.bytecode.opencsv.*;
 
 
@@ -25,15 +25,21 @@ public class Main {
 			reader = new CSVReader(new FileReader(file));
 			String[] nextLine;
 			
+			//Skip header
+			nextLine = reader.readNext();
 			while ((nextLine = reader.readNext()) != null) {
-				if (nextLine[ORG_STATUS] != null) {
+
+				if (nextLine[ORG_STATUS] != null && nextLine[ORG_STATUS].trim().length() > 0) {
 					isOrg = true;
 				}
 				
 				if (isOrg) {
-					//create org object
+					Org org = new Org(nextLine[ORG_NAME]);
+					System.out.println(org.getName());
 				} else {
-					//create person object
+					Person person = createPerson(nextLine[PERSON_NAME], nextLine[NICKNAME]);
+					System.out.println(person.getLname() + " " + person.getFname());
+					
 				}
 				
 			}
@@ -55,8 +61,24 @@ public class Main {
 				}
 			}
 		}
-		
 
+		
 	}
+	
+	private static Person createPerson(String name, String nickName) {
+		String[] names = name.split(",");
+		String lastName = names[0];
+		String firstName = names[1];
+		
+		Person person = new Person(lastName, firstName);
+		if (nickName != null) {
+			person.setNickName(nickName);
+		}
+		
+		return person;
+		
+	}
+	
+	
 
 }
