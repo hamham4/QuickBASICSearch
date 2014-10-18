@@ -5,23 +5,43 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import au.com.bytecode.opencsv.*;
+
 
 public class Main {
+	
+	private static final int ORG_STATUS = 0;
+	private static final int ORG_NAME = 2;
+	private static final int PERSON_NAME = 4;
+	private static final int NICKNAME = 6;
+	
 
 	public static void main(String[] args) {
-		BufferedReader reader = null;
 		File file = new File("test.csv");
+		CSVReader reader = null;
+		Boolean isOrg = false;
 		
 		try {
-			String text = "";
-			reader = new BufferedReader(new FileReader(file));
-			while ((text = reader.readLine()) != null) {
-				System.out.println(text);
+			reader = new CSVReader(new FileReader(file));
+			String[] nextLine;
+			
+			while ((nextLine = reader.readNext()) != null) {
+				if (nextLine[ORG_STATUS] != null) {
+					isOrg = true;
+				}
+				
+				if (isOrg) {
+					//create org object
+				} else {
+					//create person object
+				}
+				
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			//Display an error message to the user
 			e.printStackTrace();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
