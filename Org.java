@@ -11,10 +11,13 @@ public class Org {
 			throw new IllegalArgumentException();
 		}
 		
-		this.name = name;
-		setSplitNames(name);
+		
+		this.name = Utility.removePeriods(name);
+		
+		setSplitNames(this.name);
 	}
 	
+
 	private void setSplitNames(String name) {
 		String[] splitName = name.split("\\s+");
 		this.firstNamePart = splitName[0];
