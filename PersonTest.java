@@ -142,4 +142,24 @@ public class PersonTest {
 		assertEquals("two part nickname", "Joan Rose", testPerson.getNickName());
 		
 	}
+	
+	@Test
+	public void testLastNamePeriod() {
+		testPerson = new Person ("Thorup.Mart", "Sara");
+		assertEquals("last name no period", "ThorupMart", testPerson.getLname());
+		
+	}
+	
+	@Test
+	public void testFirstNamePeriod() {
+		testPerson = new Person("Thorup", "J.R.");
+		assertEquals("first name no period", "JR", testPerson.getFname());
+	}
+	
+	@Test
+	public void testNickNamePeriod() {
+		testPerson = new Person("Thorup", "Sara");
+		testPerson.setNickName("J.R.");
+		assertEquals("nickname no period", "JR", testPerson.getNickName());
+	}
 }
