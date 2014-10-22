@@ -3,6 +3,7 @@ package fastNFA;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import au.com.bytecode.opencsv.*;
@@ -17,17 +18,32 @@ public class Main {
 	
 
 	public static void main(String[] args) {
-		File file = new File("test.csv");
+		File inputFile = new File("test.csv");
+		File outputFile = new File("outputTest4.csv");
+		
+		
 		CSVReader reader = null;
+		CSVWriter writer = null;
+		
 		Boolean isOrg = false;
 		
 		try {
-			reader = new CSVReader(new FileReader(file));
+			if(outputFile.exists()) {
+				System.out.println("File already exists");
+			}
+			reader = new CSVReader(new FileReader(inputFile));
+			writer = new CSVWriter(new FileWriter(outputFile));
+			
+			
 			String[] nextLine;
 			
 			//Skip header
 			nextLine = reader.readNext();
+			writer.writeNext(nextLine);
+			
 			while ((nextLine = reader.readNext()) != null) {
+				
+				writer.writeNext(nextLine);
 
 				if (nextLine[ORG_STATUS] != null && nextLine[ORG_STATUS].trim().length() > 0) {
 					isOrg = true;
@@ -55,11 +71,13 @@ public class Main {
 			if (reader != null) {
 				try {
 					reader.close();
+					writer.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
+			
 		}
 
 		
