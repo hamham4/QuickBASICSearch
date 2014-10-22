@@ -19,7 +19,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		File inputFile = new File("test.csv");
-		File outputFile = new File("outputTest4.csv");
+		File outputFile = new File("outputTest5.csv");
 		
 		
 		CSVReader reader = null;
@@ -37,12 +37,14 @@ public class Main {
 			
 			String[] nextLine;
 			
-			//Skip header
+			//Handle the header line
 			nextLine = reader.readNext();
 			writer.writeNext(nextLine);
+			int numColumns = nextLine.length;
+		
 			
 			while ((nextLine = reader.readNext()) != null) {
-				
+
 				writer.writeNext(nextLine);
 
 				if (nextLine[ORG_STATUS] != null && nextLine[ORG_STATUS].trim().length() > 0) {
@@ -55,6 +57,7 @@ public class Main {
 				} else {
 					Person person = createPerson(nextLine[PERSON_NAME], nextLine[NICKNAME]);
 					System.out.println(person.getLname() + " " + person.getFname());
+					
 					
 				}
 				
