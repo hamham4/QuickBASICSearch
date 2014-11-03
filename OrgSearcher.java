@@ -13,13 +13,24 @@ public class OrgSearcher {
 	public List<Result> search(Org org) {
 		List<Result> searchResults = new ArrayList<Result>();
 		
-		
+		//Iterate through search results and search
 		
 		
 	
 		return searchResults;
 	}
 	
+	
+	private List<String> getSearchTermsList(Org org) {
+		List<String> searchTerms = new ArrayList<String>();
+		
+		searchTerms.add(org.getFirstNamePart());
+		if (org.getSecondNamePart() != null) {
+			searchTerms.add(org.getFirstNamePart() + " " + org.getSecondNamePart());
+		}
+		searchTerms.add(org.getName());
+		return searchTerms;
+	}
 	
 	
 	private URL getSearchURL(String searchTerm) {
