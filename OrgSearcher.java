@@ -13,8 +13,14 @@ public class OrgSearcher {
 	public List<Result> search(Org org) {
 		List<Result> searchResults = new ArrayList<Result>();
 		
+		
+		
+		
+	
 		return searchResults;
 	}
+	
+	
 	
 	private URL getSearchURL(String searchTerm) {
 		String baseURL = "https://www.nfa.futures.org/basicnet/SearchResults.aspx?type=firm&firm=";

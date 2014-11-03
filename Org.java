@@ -1,4 +1,4 @@
-package fastNFA;
+ package fastNFA;
 
 public class Org {
 	private String name;
