@@ -1,9 +1,12 @@
-package fastNFA;
+ package fastNFA;
+
+import java.util.List;
 
 public class Org {
 	private String name;
 	private String firstNamePart;
 	private String secondNamePart;
+	private List<String> searchTerms;
 	
 	
 	public Org(String name) throws IllegalArgumentException{
