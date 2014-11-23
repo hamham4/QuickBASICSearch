@@ -58,12 +58,18 @@ public class OrgTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testNumName() {
-		testOrg = new Org("5:15");	
+		testOrg = new Org("3:12");	
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testNullName() {
 		testOrg = new Org(null);	
+	}
+	
+	@Test
+	public void testNameWithPeriods(){
+		testOrg = new Org("BlackRock Ltd.");
+		assertEquals("period names", "BlackRock Ltd", testOrg.getName());
 	}
 
 	
