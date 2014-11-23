@@ -6,8 +6,7 @@ public class Org {
 	private String name;
 	private String firstNamePart;
 	private String secondNamePart;
-	private List<String> searchTerms;
-	
+
 	
 	public Org(String name) throws IllegalArgumentException{
 		if (name == null || name == "" || Utility.isAlpha(name) == false) {
