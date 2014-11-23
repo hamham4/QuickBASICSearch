@@ -1,6 +1,5 @@
 package fastNFA;
 
-<<<<<<< HEAD
 import java.net.URL;
 
 public class Result {
@@ -29,15 +28,4 @@ public class Result {
 		return searchTerm;
 	}
 	
-	
-	
-	
-	
-=======
-public class Result {
-	private String url;
-	private String searchTerm;
-	private String resultCount;
->>>>>>> 02ef6b5696a5285e807241a37cbf6d1b89945aa9
-
 }
