@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Searcher {
 	
-	private int MAX_RESULTS = 15;
+	private static int MAX_RESULTS = 15;
 	
 	private Searcher() {	
 	}
@@ -33,7 +33,18 @@ public class Searcher {
 		
 	}
 	
-	private static void searchVariations(SearchDetail searchDetailVaration) {
+	private static void searchVariations(SearchDetail mandatorySearchDetail) {
+		List<SearchDetail> variations = mandatorySearchDetail.getSearchVariations();
+		Iterator<SearchDetail> variationIterator = variations.iterator();
+		
+		int resultCount = 15;
+		while (variationIterator.hasNext() && resultCount >= MAX_RESULTS) {
+			
+			SearchDetail currentVariation = variationIterator.next();
+			resultCount = getResultCount(currentVariation.getSearchURL());
+			currentVariation.setNumResults(resultCount);
+			currentVariation.setSearched(true);
+		}
 		
 		
 	}
@@ -41,6 +52,8 @@ public class Searcher {
 		
 		
 	}
+	
+
 	
 	
 
