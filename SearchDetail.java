@@ -1,6 +1,7 @@
 package fastNFA;
 
 import java.net.URL;
+import java.util.List;
 
 public class SearchDetail {
 	private int numResults;
@@ -8,6 +9,7 @@ public class SearchDetail {
 	private String searchTerm;
 	private boolean searched = false;
 	private boolean mandatory = true;
+	private List<SearchDetail> searchVariations; 
 	
 	public SearchDetail(String searchTerm, URL searchURL) {
 		this.searchTerm = searchTerm;
@@ -44,6 +46,14 @@ public class SearchDetail {
 
 	public void setMandatory(boolean mandatory) {
 		this.mandatory = mandatory;
+	}
+
+	public List<SearchDetail> getSearchVariations() {
+		return searchVariations;
+	}
+
+	public void setSearchVariations(List<SearchDetail> searchVariations) {
+		this.searchVariations = searchVariations;
 	}
 	
 }
