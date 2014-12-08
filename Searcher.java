@@ -1,6 +1,10 @@
 package fastNFA;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,11 +52,46 @@ public class Searcher {
 		
 		
 	}
-	private static int getResultCount(URL searchURL) {
-		
+	private static int getResultCount(URL searchURL) throws IOException {
+		URLConnection searchConnection = searchURL.openConnection();
+		BufferedReader input = new BufferedReader(new InputStreamReader (searchConnection.getInputStream()));
+		int resultCount = parseSearchResults(input);
+		input.close();
+		return resultCount;
 		
 	}
 	
+	private static int parseSearchResults(BufferedReader input) throws IOException {
+		String inputLine;
+		while ((inputLine = input.readLine()) != null) {
+			System.out.println(inputLine);
+			if (inputLine.contains("ctl00_cphMain_lblSearchCount")) {
+				break;
+			}
+		
+		}
+		
+		int startOfResult = 0;
+		StringBuilder stringBuilder = new StringBuilder();
+		for(int i = 0; i < inputLine.length(); i++) {
+			if (inputLine.charAt(i) == '<') {
+				startOfResult = i;
+				break;
+			}
+		}
+		
+		for(int i = startOfResult; i < inputLine.length(); i++){
+			if (inputLine.charAt(i) == ' ') {
+				break;
+			}
+			stringBuilder.append(inputLine.charAt(i));
+		}
+		
+		String resultCount = stringBuilder.toString();
+		
+		return Integer.parseInt(resultCount);
+		
+	}
 
 	
 	
