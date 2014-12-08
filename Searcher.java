@@ -1,6 +1,8 @@
 package fastNFA;
 
 import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
 
 public class Searcher {
 	
@@ -10,7 +12,17 @@ public class Searcher {
 	}
 	
 	public static void search(Searchable searchObject) {
-		//Iterate through search details
+		List<SearchDetail> primarySearchDetails = searchObject.getSearchDetails();
+		
+		//Iterate through primary search details
+		Iterator<SearchDetail> primarySearchIterator = primarySearchDetails.iterator();
+		while (primarySearchIterator.hasNext()) {
+			SearchDetail currentMandatorySearchDetails = primarySearchIterator.next();
+			searchVariations(currentMandatorySearchDetails);
+			
+			
+		}
+		
 		//Run search if mandatory = true
 		//Stop search if results < 15\
 		//Execute search URL
@@ -21,7 +33,10 @@ public class Searcher {
 		
 	}
 	
-	
+	private static void searchVariations(SearchDetail searchDetailVaration) {
+		
+		
+	}
 	private static int getResultCount(URL searchURL) {
 		
 		
